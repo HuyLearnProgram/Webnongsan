@@ -142,28 +142,11 @@
 												href="<c:url value="/product-detail.htm?productId=${item.productId }"/>">${item.productName }</a>
 										</h6>
 										<h5>
-											<c:if test="${item.saleOff > 0 }">
-												<span
-													style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-													<c:set var="formattedPrice">
-														<fmt:formatNumber value="${item.price}" type="number"
-															maxFractionDigits="0" />
-													</c:set> ${formattedPrice}đ
-												</span>
-												<c:set var="formattedPrice">
-													<fmt:formatNumber
-														value="${item.price - item.price*item.saleOff/100}"
-														type="number" maxFractionDigits="0" />
-												</c:set>
-													${formattedPrice}đ
-												</c:if>
-											<c:if test="${item.saleOff <= 0 }">
-												<c:set var="formattedPrice">
-													<fmt:formatNumber value="${item.price}" type="number"
-														maxFractionDigits="0" />
-												</c:set>
-												${formattedPrice}đ
-												</c:if>
+											<c:set var="formattedPrice">
+												<fmt:formatNumber value="${item.price}" type="number"
+													maxFractionDigits="0" />
+											</c:set>
+											${formattedPrice}đ
 										</h5>
 									</div>
 								</div>
@@ -202,28 +185,11 @@
 													<a href="<c:url value="/assets/user/#"/>">${item.productName }</a>
 												</h6>
 												<h5>
-													<c:if test="${item.saleOff > 0 }">
-														<span
-															style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-															<c:set var="formattedPrice">
-																<fmt:formatNumber value="${item.price}" type="number"
-																	maxFractionDigits="0" />
-															</c:set> ${formattedPrice}đ
-														</span>
-														<c:set var="formattedPrice">
-															<fmt:formatNumber
-																value="${item.price - item.price*item.saleOff/100}"
-																type="number" maxFractionDigits="0" />
-														</c:set>
+													<c:set var="formattedPrice">
+														<fmt:formatNumber value="${item.price}" type="number"
+															maxFractionDigits="0" />
+													</c:set>
 													${formattedPrice}đ
-												</c:if>
-													<c:if test="${item.saleOff <= 0 }">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set>
-												${formattedPrice}đ
-												</c:if>
 												</h5>
 
 											</div>
@@ -269,16 +235,18 @@
 	<section class="latest-product spad">
 		<div class="container">
 			<div class="row">
-				<c:set var="limitLatestProduct" value="${latestProducts.size()}" />
-				<c:if test="${limitLatestProduct > 5 }">
-					<c:set var="limitLatestProduct" value="5" />
-				</c:if>
 				<div class="col-lg-4 col-md-6">
 
 					<div class="latest-product__text">
 						<h4>Latest Products</h4>
 
+						<c:set var="limitLatestProduct" value="${latestProducts.size()}" />
+						<c:if test="${limitLatestProduct > 5 }">
+							<c:set var="limitLatestProduct" value="5" />
+						</c:if>
+
 						<div class="latest-product__slider owl-carousel">
+
 							<div class="latest-prdouct__slider__item">
 								<c:forEach var="item" items="${latestProducts}" varStatus="loop"
 									begin="0" end="${limitLatestProduct }">
@@ -292,27 +260,12 @@
 										</div>
 										<div class="latest-product__item__text">
 											<h6>${item.productName }</h6>
-											<span><c:if test="${item.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.price - item.price*item.saleOff/100}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.saleOff <= 0 }">
-													<c:set var="formattedPrice">
+											<span><c:set var="formattedPrice">
 														<fmt:formatNumber value="${item.price}" type="number"
 															maxFractionDigits="0" />
 													</c:set>
-												${formattedPrice}đ
-												</c:if></span>
+													${formattedPrice}đ
+											</span>
 										</div>
 									</a>
 									<c:if
@@ -325,11 +278,8 @@
 							</c:forEach>
 						</div>
 					</div>
+
 				</div>
-				<c:set var="limitLatestProduct" value="${ratedProducts.size()}" />
-				<c:if test="${limitLatestProduct > 5 }">
-					<c:set var="limitLatestProduct" value="5" />
-				</c:if>
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
 						<h4>Top Rated Products</h4>
@@ -347,31 +297,16 @@
 										</div>
 										<div class="latest-product__item__text">
 											<h6>${item.productName }</h6>
-											<span><c:if test="${item.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.price - item.price*item.saleOff/100}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.saleOff <= 0 }">
-													<c:set var="formattedPrice">
+											<span><c:set var="formattedPrice">
 														<fmt:formatNumber value="${item.price}" type="number"
 															maxFractionDigits="0" />
 													</c:set>
-												${formattedPrice}đ
-												</c:if></span>
+													${formattedPrice}đ
+											</span>
 										</div>
 									</a>
 									<c:if
-										test="${(loop.index+1) % 3 == 0 || (loop.index+1) == ratedProducts.size() }">
+										test="${(loop.index+1) % 3 == 0 || (loop.index+1) == latestProducts.size() }">
 							</div>
 							<c:if test="${(loop.index+1) < limitLatestProduct }">
 								<div class="latest-prdouct__slider__item">
@@ -382,11 +317,6 @@
 						</div>
 					</div>
 				</div>
-
-				<c:set var="limitLatestProduct" value="${reviewProducts.size()}" />
-				<c:if test="${limitLatestProduct > 5 }">
-					<c:set var="limitLatestProduct" value="5" />
-				</c:if>
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
 						<h4>Review Products</h4>
@@ -404,31 +334,16 @@
 										</div>
 										<div class="latest-product__item__text">
 											<h6>${item.productName }</h6>
-											<span><c:if test="${item.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.price - item.price*item.saleOff/100}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.saleOff <= 0 }">
-													<c:set var="formattedPrice">
+											<span><c:set var="formattedPrice">
 														<fmt:formatNumber value="${item.price}" type="number"
 															maxFractionDigits="0" />
 													</c:set>
-												${formattedPrice}đ
-												</c:if></span>
+													${formattedPrice}đ
+											</span>
 										</div>
 									</a>
 									<c:if
-										test="${(loop.index+1) % 3 == 0 || (loop.index+1) == reviewProducts.size() }">
+										test="${(loop.index+1) % 3 == 0 || (loop.index+1) == latestProducts.size() }">
 							</div>
 							<c:if test="${(loop.index+1) < limitLatestProduct }">
 								<div class="latest-prdouct__slider__item">

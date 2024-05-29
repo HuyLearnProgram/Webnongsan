@@ -47,28 +47,11 @@
 												src="<c:url value="/assets/user/img/products/${item.product.image }"/>"
 												alt="" style="width: 100px">
 												<h5>${item.product.productName }</h5></td>
-											<td class="shoping__cart__price"><c:if
-													test="${item.product.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.product.price}"
-																type="number" maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.product.price - item.product.price*item.product.saleOff/100}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.product.saleOff <= 0 }">
-													<c:set var="formattedPrice">
-														<fmt:formatNumber value="${item.product.price}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-												${formattedPrice}đ
-												</c:if></td>
+											<td class="shoping__cart__price"><c:set
+													var="formattedPrice">
+													<fmt:formatNumber value="${item.product.price}"
+														type="number" maxFractionDigits="0" />
+												</c:set> ${formattedPrice}đ</td>
 											<td class="shoping__cart__quantity">
 												<div class="quantity">
 													<div class="pro-qty" data-id="${item.product.productId }"
@@ -81,29 +64,12 @@
 													</div>
 												</div>
 											</td>
-											<td class="shoping__cart__total">
-												<c:if
-													test="${item.product.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.product.price * item.quantity}"
-																type="number" maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${(item.product.price - item.product.price*item.product.saleOff/100) * item.quantity}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.product.saleOff <= 0 }">
-													<c:set var="formattedPrice">
-														<fmt:formatNumber value="${item.product.price * item.quantity}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-												${formattedPrice}đ
-												</c:if></td>
+											<td class="shoping__cart__total"><c:set
+													var="formattedPrice">
+													<fmt:formatNumber
+														value="${item.product.price * item.quantity}"
+														type="number" maxFractionDigits="0" />
+												</c:set> ${formattedPrice}đ</td>
 											<td class="shoping__cart__item__close"><a
 												href="<c:url value="/DeleteCart.htm?productId=${ item.product.productId}"/>"><span
 													class="icon_close"></span></a></td>
@@ -172,11 +138,12 @@
 								if (newVal > stock) {
 									alert('Chỉ còn lại ' + stock
 											+ ' sản phẩm trong kho.');
-									$button.parent().find('input').val(stock);
+									$button.parent().find('input')
+											.val(stock);
 									return;
-								} else {
+								}else{
 									window.location = "EditCart.htm?productId="
-											+ id + "&qty=" + newVal;
+										+ id + "&qty=" + newVal;
 								}
 							} else {
 								// Don't allow decrementing below zero

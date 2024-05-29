@@ -96,27 +96,23 @@
 	height: 40px !important;
 	width: 40px !important;
 }
-
 .product__details__quantity input[type=number]::-webkit-outer-spin-button,
-	.product__details__quantity input[type=number]::-webkit-inner-spin-button
-	{
+.product__details__quantity input[type=number]::-webkit-inner-spin-button{
 	-webkit-appearance: none;
-	margin: 0;
+    margin: 0;
 }
-
 .product__details__quantity input[type=number] {
-	-moz-appearance: textfield;
-	appearance: textfield;
-	width: 50px; /* Adjust width as needed */
-	text-align: center;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    width: 50px; /* Adjust width as needed */
+    text-align: center;
 }
-
 .product__details__quantity .pro-qty button {
-	background-color: #6f6f6f26; /* Customize button color */
-	border: none;
-	padding: 10px 15px; /* Adjust padding as needed */
-	cursor: pointer;
-	font-size: 16px; /* Adjust font size as needed */
+    background-color: #6f6f6f26; /* Customize button color */
+    border: none;
+    padding: 10px 15px; /* Adjust padding as needed */
+    cursor: pointer;
+    font-size: 16px; /* Adjust font size as needed */
 }
 </style>
 </head>
@@ -219,29 +215,21 @@
 						</div>
 
 						<div class="product__details__price">
-								<c:set var="formattedPrice">
-									<fmt:formatNumber value="${product.price}" type="number"
-										maxFractionDigits="0" />
-								</c:set>
-								${formattedPrice}đ
+							<fmt:formatNumber value='${product.price }' type='currency'
+								currencySymbol='đ' maxFractionDigits='0' />
 						</div>
 						<form action="AddCart.htm?productId=${product.productId }"
-							method="post" style="display: inline-block;"
-							onsubmit="return validateQuantity()">
+							method="post" style="display: inline-block;" onsubmit="return validateQuantity()">
 							<div class="product__details__quantity">
 								<div class="quantity">
 									<div class="pro-qty">
 										<button type="button" onclick="changeQuantity(-1)">-</button>
-										<input id="quantity" name="quantity" type="number" min="1"
-											step="1" value="1" oninput="validateInput(event)">
+										<input id="quantity" name="quantity" type="number" min="1" step="1" value="1" oninput="validateInput(event)">
 										<button type="button" onclick="changeQuantity(1)">+</button>
 									</div>
 								</div>
 							</div>
-							<c:if test="${product.quantity <= 0}">
-								<c:set var="btn_disable" value="disabled"></c:set>
-							</c:if>
-							<button type="submit" class="primary-btn btn" ${btn_disable} style="border: none">ADD
+							<button type="submit" class="primary-btn" style="border: none">ADD
 								TO CARD</button>
 						</form>
 						<a
@@ -253,7 +241,7 @@
 								<li><b>Tồn kho: </b> <span>${product.quantity }</span></li>
 							</c:if>
 							<c:if test="${product.quantity <= 0}">
-								<li style="color: #dd2222"><b>Sản phẩm hết hàng</span></li>
+								<li style="color:#dd2222"><b>Sản phẩm hết hàng</span></li>
 							</c:if>
 						</ul>
 					</div>
@@ -359,14 +347,8 @@
 									href="<c:url value="/product-detail.htm?productId=${item.productId }"/>">${item.productName }</a>
 							</h6>
 							<h5>
-								<%-- <fmt:formatNumber value='${item.price }' type='currency'
-									currencySymbol='đ' maxFractionDigits='0' /> --%>
-
-								<c:set var="formattedPrice">
-									<fmt:formatNumber value="${item.price}" type="number"
-										maxFractionDigits="0" />
-								</c:set>
-								${formattedPrice}đ
+								<fmt:formatNumber value='${item.price }' type='currency'
+									currencySymbol='đ' maxFractionDigits='0' />
 							</h5>
 						</div>
 					</div>
@@ -377,47 +359,45 @@
 		</div>
 	</section>
 	<!-- Related Product Section End -->
-	<content tag="script"> <script>
-		function changeQuantity(amount) {
-			var quantityInput = document.getElementById('quantity');
-			var currentQuantity = parseInt(quantityInput.value);
-			var newQuantity = currentQuantity + amount;
+	<content tag="script">
+		<script>
+			function changeQuantity(amount) {
+			    var quantityInput = document.getElementById('quantity');
+			    var currentQuantity = parseInt(quantityInput.value);
+			    var newQuantity = currentQuantity + amount;
 
-			if (newQuantity >= 1) {
-				quantityInput.value = newQuantity;
+			    if (newQuantity >= 1) {
+			        quantityInput.value = newQuantity;
+			    }
 			}
-		}
-		function validateInput(event) {
-			var input = event.target;
-			var value = input.value;
+			function validateInput(event){
+				var input = event.target;
+				var value = input.value;
 
-			// Kiểm tra và xóa tất cả dấu '.'
-			var newValue = value.replace(/\./g, '');
+				// Kiểm tra và xóa tất cả dấu '.'
+			    var newValue  = value.replace(/\./g, '');
+				
+				if (value === '-' || value === '0' || parseInt(value) < 1){
+					input.value = '';
+				}else{
+					input.value = newValue;
+				}
 
-			if (value === '-' || value === '0' || parseInt(value) < 1) {
-				input.value = '';
-			} else {
-				input.value = newValue;
 			}
-
-		}
-
-		function validateQuantity() {
-			var quantity = document.getElementById('quantity').value;
-			var productQuantity = $
-			{
-				product.quantity
+			
+			function validateQuantity(){
+				var quantity = document.getElementById('quantity').value;
+				var productQuantity = ${product.quantity};
+				if(quantity === '' || !Number.isInteger(Number(quantity))){
+					alert("Vui lòng nhập số lượng của sản phẩm");
+					return false;
+				}if(parseInt(quantity) > productQuantity){
+					alert("Số lượng sản phẩm tồn kho không đủ");
+					return false;
+				}
+				return true;
 			}
-			;
-			if (quantity === '' || !Number.isInteger(Number(quantity))) {
-				alert("Vui lòng nhập số lượng của sản phẩm");
-				return false;
-			}
-			if (parseInt(quantity) > productQuantity) {
-				alert("Số lượng sản phẩm tồn kho không đủ");
-				return false;
-			}
-			return true;
-		}
-	</script> </content>
+			
+		</script>
+	</content>
 </body>

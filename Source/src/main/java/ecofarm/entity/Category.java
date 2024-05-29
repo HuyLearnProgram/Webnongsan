@@ -27,7 +27,7 @@ public class Category {
 	@Column(name = "Image")
 	private String image;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	private Set<Product> products = new HashSet<>(0);
 
 	public Category() {

@@ -126,7 +126,7 @@ public class ProductDAOImpl implements IProductDAO {
 	    try {
 	        String hql = "FROM Product ORDER BY PostingDate DESC";
 	        Query query = session.createQuery(hql);
-	        query.setMaxResults(6);
+	        query.setMaxResults(3);
 	        list = query.list();
 	    } catch (Exception e) {
 	        System.out.println(e.getMessage());
@@ -253,28 +253,5 @@ public class ProductDAOImpl implements IProductDAO {
 		if (feedbacks != null) {
 			product.setReviews(feedbacks.size());
 		}
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Product> getProductInSaleByCaID(int categoryID) {
-		List<Product> list = new ArrayList<>();
-		Session session = sessionFactory.getCurrentSession();
-		try {
-			if (categoryID == 0) {
-				String hql = "FROM Product WHERE saleOff > 0";
-				list = session.createQuery(hql).list();
-			}else {
-				String hql = "FROM Product WHERE saleOff > 0 AND category.categoryId =:categoryID";
-				Query query = session.createQuery(hql);
-				query.setParameter("categoryID", categoryID);
-				list = query.list();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		return list;
 	}
 }

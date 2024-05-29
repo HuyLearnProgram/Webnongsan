@@ -173,11 +173,7 @@ public class CartDAOImpl implements ICartDAO {
 		float total = 0;
 		if (cart.size() > 0) {
 			for (Cart item : cart) {
-				if(item.getProduct().getSaleOff() > 0) {
-					total += item.getQuantity() * (item.getProduct().getPrice() - item.getProduct().getPrice()*item.getProduct().getSaleOff()/100);
-				}else {
-					total += item.getQuantity() * item.getProduct().getPrice();
-				}
+				total += item.getQuantity() * item.getProduct().getPrice();
 			}
 			return total;
 		}

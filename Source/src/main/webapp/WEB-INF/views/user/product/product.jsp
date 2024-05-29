@@ -144,33 +144,11 @@
 														<a
 															href="<c:url value="/product-detail.htm?productId=${item.productId }"/>">${item.productName }</a>
 													</h6>
-													<span> <c:if test="${item.saleOff > 0 }">
-															<span
-																style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-																<c:set var="formattedPrice">
-																	<fmt:formatNumber value="${item.price}" type="number"
-																		maxFractionDigits="0" />
-																</c:set> ${formattedPrice}đ
-															</span>
-															<c:set var="formattedPrice">
-																<fmt:formatNumber
-																	value="${item.price - item.price*item.saleOff/100}"
-																	type="number" maxFractionDigits="0" />
-															</c:set>
-													${formattedPrice}đ
-												</c:if> <c:if test="${item.saleOff <= 0 }">
-															<c:set var="formattedPrice">
-																<fmt:formatNumber value="${item.price}" type="number"
-																	maxFractionDigits="0" />
-															</c:set>
-												${formattedPrice}đ
-												</c:if>
-												 <%-- <c:set var="formattedPrice">
+													<span> <c:set var="formattedPrice">
 															<fmt:formatNumber value="${item.price}" type="number"
 																maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ --%>
+														</c:set> ${formattedPrice}đ
 													</span>
-
 												</div>
 											</a>
 											<c:if
@@ -196,7 +174,8 @@
 
 						<div class="row">
 							<div class="product__discount__slider owl-carousel">
-								<c:forEach var="item" items="${ saleProducts}" varStatus="loop">
+								<c:forEach var="item" items="${ productsByCategory}"
+									varStatus="loop">
 
 									<div class="col-lg-4">
 										<div class="product__discount__item">
@@ -221,19 +200,11 @@
 														href="<c:url value="/product-detail.htm?productId=${item.productId }"/>">${item.productName }</a>
 												</h5>
 												<div class="product__item__price">
-													<span> <c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set>${formattedPrice}đ
-													</span>
-
 													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.price - item.price*item.saleOff/100}"
-															type="number" maxFractionDigits="0" />
+														<fmt:formatNumber value="${item.price}" type="number"
+															maxFractionDigits="0" />
 													</c:set>
 													${formattedPrice}đ
-
 												</div>
 											</div>
 										</div>
@@ -288,29 +259,11 @@
 													href="<c:url value="/product-detail.htm?productId=${item.productId }"/>">${item.productName }</a>
 											</h6>
 											<h5>
-												<c:if test="${item.saleOff > 0 }">
-													<span
-														style="font-size: 14px; color: #b2b2b2; display: inline-block; font-weight: 400; text-decoration: line-through; margin-left: 10px;">
-														<c:set var="formattedPrice">
-															<fmt:formatNumber value="${item.price}" type="number"
-																maxFractionDigits="0" />
-														</c:set> ${formattedPrice}đ
-													</span>
-													<c:set var="formattedPrice">
-														<fmt:formatNumber
-															value="${item.price - item.price*item.saleOff/100}"
-															type="number" maxFractionDigits="0" />
-													</c:set>
-													${formattedPrice}đ
-												</c:if>
-												<c:if test="${item.saleOff <= 0 }">
-													<c:set var="formattedPrice">
-														<fmt:formatNumber value="${item.price}" type="number"
-															maxFractionDigits="0" />
-													</c:set>
+												<c:set var="formattedPrice">
+													<fmt:formatNumber value="${item.price}" type="number"
+														maxFractionDigits="0" />
+												</c:set>
 												${formattedPrice}đ
-												</c:if>
-
 											</h5>
 										</div>
 									</div>

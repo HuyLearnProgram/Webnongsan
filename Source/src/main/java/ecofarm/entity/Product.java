@@ -47,9 +47,6 @@ public class Product {
 
 	@Column(name = "Detail")
 	private String detail;
-	
-	@Column(name = "SaleOff",nullable = true)
-	private Integer saleOff;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -239,14 +236,6 @@ public class Product {
 
 	public void setReviews(int reviews) {
 		this.reviews = reviews;
-	}
-
-	public Integer getSaleOff() {
-        return (saleOff == null) ? 0 : saleOff;
-    }
-
-	public void setSaleOff(int saleOff) {
-		this.saleOff = saleOff;
 	}
 
 	

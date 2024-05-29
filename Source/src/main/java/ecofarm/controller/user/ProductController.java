@@ -1,6 +1,7 @@
 package ecofarm.controller.user;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ProductController {
 	private IProductDAO productDAO;
 	@Autowired
 	private ICategoryDAO categoryDAO;
-
+	
 	private PaginateDAOImpl paginateDAO = new PaginateDAOImpl();
 
 	@RequestMapping()
@@ -39,46 +40,43 @@ public class ProductController {
 		List<Category> cates = categoryDAO.getAllCategories();
 		mv.addObject("categories", cates);
 		mv.addObject("productsByCategory", products);
-		mv.addObject("saleProducts", productDAO.getProductInSaleByCaID(id));
 		mv.addObject("latestProducts", productDAO.getLatestProductsByCaID(id));
 		mv.addObject("categoryID", id);
 		mv.addObject("paginateInfo", paginateDAO.getInfoPaginate(products.size(), 5, currentPage));
 		mv.setViewName("user/product/product");
 		return mv;
 	}
-
-	@RequestMapping(value = "search", method = RequestMethod.GET)
+	
+	@RequestMapping(value="search", method = RequestMethod.GET)
 	public String getListProduct(ModelMap model,
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int crrPage,
 			@RequestParam(value = "sort", required = false) String sort,
 			@RequestParam(required = true, value = "search") String search,
 			@RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
-			@RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice) {
+	        @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice) {
 		List<Product> products = productDAO.searchProducts(search);
 		int maxPri = this.getMaxPrice(products);
 		List<Category> cates = categoryDAO.getAllCategories();
-
+		
 		if (minPrice != null && maxPrice != null) {
-			if (!(minPrice.compareTo(BigDecimal.ZERO) >= 0 && minPrice.compareTo(new BigDecimal(1000)) < 0
-					&& maxPrice.compareTo(new BigDecimal(maxPri)) == 0)) {
-				products = filterByPriceRange(products, minPrice, maxPrice);
-			}
-		}
+			if (!(minPrice.compareTo(BigDecimal.ZERO) >= 0 && minPrice.compareTo(new BigDecimal(1000)) < 0 && maxPrice.compareTo(new BigDecimal(maxPri)) == 0)) {
+		        products = filterByPriceRange(products, minPrice, maxPrice);
+		    }
+	    }
 
-		if ("name".equals(sort)) {
-			Collections.sort(products, Comparator.comparing(Product::getProductName));
-		}
+	    if ("name".equals(sort)) {
+	        Collections.sort(products, Comparator.comparing(Product::getProductName));
+	    }
 
-		if ("price".equals(sort)) {
-			Collections.sort(products, Comparator.comparing(Product::getPrice));
-		}
-
-		int totalProducts = products.size();
-
+	    if ("price".equals(sort)) {
+	        Collections.sort(products, Comparator.comparing(Product::getPrice));
+	    }
+	    
+	    int totalProducts = products.size();
+	    		
 		Paginate paginate = paginateDAO.getInfoPaginate(totalProducts, 6, crrPage);
 		List<Product> prods = products.subList(paginate.getStart(), paginate.getEnd());
 		model.addAttribute("categories", cates);
-
 		model.addAttribute("latestProducts", productDAO.getLatestProduct());
 		model.addAttribute("paginateInfo", paginate);
 		model.addAttribute("total", totalProducts);
@@ -86,24 +84,27 @@ public class ProductController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("maxprice", maxPri);
 		model.addAttribute("search", search);
-		// System.out.println(maxPri);
+		//System.out.println(maxPri);
 		return "user/product/searchProduct";
 	}
-
+	
 	private List<Product> filterByPriceRange(List<Product> products, BigDecimal minPrice, BigDecimal maxPrice) {
-		return products.stream().filter(product -> {
-			BigDecimal price = BigDecimal.valueOf(product.getPrice());
-			return price.compareTo(minPrice) >= 0 && price.compareTo(maxPrice) <= 0;
-		}).collect(Collectors.toList());
+	    return products.stream()
+	            .filter(product -> {
+	                BigDecimal price = BigDecimal.valueOf(product.getPrice());
+	                return price.compareTo(minPrice) >= 0 && price.compareTo(maxPrice) <= 0;
+	            })
+	            .collect(Collectors.toList());
 	}
-
+	
 	private int getMaxPrice(List<Product> products) {
-		if (products.isEmpty()) {
-			return 1000; // Trả về 1000 (giá mặc định)
-		}
+        if (products.isEmpty()) {
+            return 1000; // Trả về 1000 (giá mặc định)
+        }
 
-		return (int) products.stream().mapToDouble(Product::getPrice) // Chuyển đổi danh sách thành danh sách giá
-				.max() // Tìm giá lớn nhất
-				.orElse(1000);
-	}
+        return (int) products.stream()
+                .mapToDouble(Product::getPrice) // Chuyển đổi danh sách thành danh sách giá
+                .max() // Tìm giá lớn nhất
+                .orElse(1000);
+    }
 }
