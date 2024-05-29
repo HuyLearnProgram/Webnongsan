@@ -106,7 +106,7 @@ public class EProductController {
 
 		Account acc = (Account) session.getAttribute("userInfo");
 		if (acc == null) {
-			System.out.print("Không có tài khoản đang đăng nhập");
+			System.out.print("Khong co tai khoan dang nhap");
 			return "redirect:/logout.htm";
 		}
 		
@@ -180,11 +180,11 @@ public class EProductController {
 					}
 				}
 			} catch (Exception e) {
-				re.addFlashAttribute("mess", "Vui lòng kiểm tra lại ảnh sản phẩm");
+				re.addFlashAttribute("mess", "Check product image again");
 			}
-			re.addFlashAttribute("mess", "Xóa thành công");
+			re.addFlashAttribute("mess", "Delete successful");
 		} else {
-			re.addFlashAttribute("mess", "Có lỗi khi xóa");
+			re.addFlashAttribute("mess", "An error occurred when delete");
 		}
 		return "redirect:/employee/products.htm";
 	}
@@ -260,7 +260,7 @@ public class EProductController {
 			foundProd.setPrice(product.getPrice());
 			foundProd.setQuantity(product.getQuantity());
 			productDAO.updateProduct(foundProd);
-			re.addFlashAttribute("mess", "Cập nhật thành công");
+			re.addFlashAttribute("mess", "Update successful");
 		}
 		return "redirect:/employee/products.htm";
 	}

@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/admin/admin-lib.jsp"%>
 <c:if test="${not empty addProdBean }">
 	<c:set var="crrBean" value="${addProdBean}" />
 	<c:set var="beanName" value="addProdBean" />
 	<c:set var="actionString" value="admin/products/create-product.htm" />
-	<c:set var="title" value="Thêm sản phẩm" />
+	<c:set var="title" value="Create Product" />
 </c:if>
 <c:if test="${not empty updateProdBean }">
 	<c:set var="crrBean" value="${updateProdBean}" />
 	<c:set var="beanName" value="updateProdBean" />
 	<c:set var="actionString"
 		value="admin/products/update_product/${crrBean.productId}.htm" />
-	<c:set var="title" value="Cập nhật sản phẩm" />
+	<c:set var="title" value="Update Product" />
 </c:if>
 
 <body>
@@ -48,9 +46,9 @@
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item  "><a
-													href="admin/dashboard.htm" class="brc-link">Trang chủ</a></li>
+													href="admin/dashboard.htm" class="brc-link">Dashboard </a></li>
 												<li class="breadcrumb-item "><a
-													href="admin/products.htm" class="brc-link">Sản phẩm</a>
+													href="admin/products.htm" class="brc-link">Product </a>
 												<li class="breadcrumb-item active" aria-current="page"
 													class="text-decoration-none">${title }</li>
 											</ol>
@@ -65,46 +63,47 @@
 									class="row">
 									<form:input type="hidden" path="productId" class="col-md-12" />
 									<div class="col-md-12 mt-2">
-										<label for="inputNameProduct" class="form-label mb-2 fw-bold">Tên sản phẩm</label>
+										<label for="inputNameProduct" class="form-label mb-2 fw-bold">Product
+											Name</label>
 										<form:input path="productName" class="form-control"
 											id="inputNameProduct" required="true" />
 										<form:errors path="productName" style="color: red;" />
 
 									</div>
 									<div class="col-md-5">
-										<label for="inputCategory" class="form-label mb-2 fw-bold">Phân loại
-											</label>
+										<label for="inputCategory" class="form-label mb-2 fw-bold">Category
+											Type</label>
 										<form:select path="categoryId" id="inputCategory"
 											class="form-control" items="${categories}"
 											itemValue="categoryId" itemLabel="name"></form:select>
 									</div>
 									<div class="col-md-3 mt-2">
-										<label for="inputQuantity" class="form-label mb-2 fw-bold">Số lượng</label>
+										<label for="inputQuantity" class="form-label mb-2 fw-bold">Quantity</label>
 										<form:input path="quantity" type="number" class="form-control"
 											id="inputQuantity" min="0" />
 										<form:errors path="quantity" style="color: red;" />
 
 									</div>
 									<div class="col-md-3 mt-2">
-										<label for="inputUnit" class="form-label mb-2 fw-bold">Đơn vị tính</label>
+										<label for="inputUnit" class="form-label mb-2 fw-bold">Unit</label>
 										<form:input path="unit" type="text" class="form-control"
 											id="inputUnit" />
 									</div>
 									<c:if test="${not empty updateProdBean }">
 										<div class="form-group mt-3">
-											<p class="mb-2 fw-bold">Ảnh</p>
+											<p class="mb-2 fw-bold">Current Image</p>
 											<img id="output" class="width-100" style="width: 100px"
 												src="<c:url value="/assets/user/img/products/${crrBean.image}" />"
 												alt="No Image" />
 										</div>
 									</c:if>
 									<div class="col-md-6 mt-2">
-										<label for="inputImage" class="form-label mb-2 fw-bold">Ảnh mới</label>
+										<label for="inputImage" class="form-label mb-2 fw-bold">Image</label>
 										<form:input type="file" class="form-control" id="inputImage"
 											path="imageFile" />
 									</div>
 									<div class="col-md-5 mt-2">
-										<label for="inputPrice" class="form-label mb-2 fw-bold">Giá</label>
+										<label for="inputPrice" class="form-label mb-2 fw-bold">Price</label>
 										<form:input path="price" type="number" class="form-control"
 											id="inputPrice" min="0" step="1000" />
 										<form:errors path="price" style="color: red;" />
@@ -114,12 +113,12 @@
 										<div class="form-floating mb-3">
 											<form:textarea type="text" class="form-control" path="detail"
 												id="inputDetail" style="height: 100px" />
-											<label for="inputDetail" class="form-label mb-2 fw-bold">Mô tả</label>
+											<label for="inputDetail" class="form-label mb-2 fw-bold">Detail</label>
 										</div>
 									</div>
 									<div
 										class="col-12 mt-2 d-flex align-items-center justify-content-center">
-										<button type="submit" class="btn btn-custom">Xác nhận</button>
+										<button type="submit" class="btn btn-custom">Submit</button>
 									</div>
 								</form:form>
 

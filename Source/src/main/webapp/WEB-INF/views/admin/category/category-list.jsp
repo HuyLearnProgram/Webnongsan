@@ -31,13 +31,13 @@
 								<div
 									class="d-md-flex justify-content-between align-items-center">
 									<div>
-										<h2>Danh mục</h2>
+										<h2>Categories</h2>
 										<!-- breacrumb -->
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item  "><a
-													href="admin/dashboard.htm" class="brc-link">Trang chủ</a></li>
-												<li class="breadcrumb-item active" aria-current="page">Danh mục</li>
+													href="admin/dashboard.htm" class="brc-link">Dashboard </a></li>
+												<li class="breadcrumb-item active" aria-current="page">Category</li>
 											</ol>
 
 										</nav>
@@ -45,7 +45,7 @@
 									<!-- button -->
 									<div>
 										<a href="admin/category/addcategory.htm"
-											class="btn btn-custom">Thêm danh mục</a>
+											class="btn btn-custom">Add New Category</a>
 									</div>
 								</div>
 							</div>
@@ -61,7 +61,7 @@
 											<form class="d-flex" role="search"
 												action="admin/category.htm">
 												<input class="form-control" type="search"
-													placeholder="Tìm danh mục" aria-label="Search"
+													placeholder="Search Category" aria-label="Search"
 													name="search" required>
 											</form>
 										</div>
@@ -70,9 +70,9 @@
 											<div class="dropdown">
 												<button class="btn btn-custom dropdown-toggle" type="button"
 													data-bs-toggle="dropdown" aria-expanded="false">
-													<c:if test="${filter == 0 }">Tất cả</c:if>
-													<c:if test="${filter == 1 }">Có sản phẩm</c:if>
-													<c:if test="${filter == 2 }">Chưa sản phẩm</c:if>
+													<c:if test="${filter == 0 }">All</c:if>
+													<c:if test="${filter == 1 }">Unpublished</c:if>
+													<c:if test="${filter == 2 }">Published</c:if>
 												</button>
 												<ul class="dropdown-menu">
 													<c:set var="baseURL" value="admin/category.htm" />
@@ -89,11 +89,11 @@
 														</c:otherwise>
 													</c:choose>
 													<li><a class="dropdown-item"
-														href="${baseURL}${separator}filter=0">Tất cả</a></li>
+														href="${baseURL}${separator}filter=0">All</a></li>
 													<li><a class="dropdown-item"
-														href="${baseURL}${separator}filter=1">Có sản phẩm</a></li>
+														href="${baseURL}${separator}filter=1">Unpublished</a></li>
 													<li><a class="dropdown-item"
-														href="${baseURL}${separator}filter=2">Chưa sản phẩm</a></li>
+														href="${baseURL}${separator}filter=2">Published</a></li>
 												</ul>
 
 											</div>
@@ -110,11 +110,11 @@
 								<table class="table ">
 									<thead class="position-sticky top-0 ">
 										<tr class="table-success">
-											<th>Hình ảnh</th>
-											<th>Phân loại</th>
-											<th>SL sản phẩm</th>
-											<th>Cập nhật</th>
-											<th>Xóa</th>
+											<th>Image</th>
+											<th>Category</th>
+											<th>Product Size</th>
+											<th>Update</th>
+											<th>Delete</th>
 											<th>Status</th>
 										</tr>
 									</thead>
@@ -124,20 +124,20 @@
 												<td class="align-middle"><c:choose>
 														<c:when
 															test="${item.image != null && !item.image.trim().isEmpty()}">
-															<a href="product.htm?categoryId=${item.categoryId}">
+															<a href="product/index.htm?categoryId=${item.categoryId}">
 																<img src="assets/user/img/category/${item.image}"
 																alt="Category Name" style="width: 80px">
 															</a>
 														</c:when>
 														<c:otherwise>
-															<a href="product.htm?categoryId=${item.categoryId}">
+															<a href="product/index.htm?categoryId=${item.categoryId}">
 																<img src="assets/user/img/category/default-cate.png"
 																alt="Category Name" style="width: 80px">
 															</a>
 														</c:otherwise>
 													</c:choose></td>
 												<td class="align-middle"><a
-													href="product.htm?categoryId=${item.categoryId}"
+													href="product/index.htm?categoryId=${item.categoryId}"
 													class="text-dark">${item.name}</a></td>
 												<td class="align-middle">${item.products.size()}</td>
 												<td class="align-middle"><a

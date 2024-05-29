@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/admin/admin-lib.jsp"%>
 <c:if test="${not empty addCate }">
 	<c:set var="crrBean" value="${addCate}" />
 	<c:set var="nameBean" value="addCate" />
 	<c:set var="actionString" value="admin/category/addcategory.htm" />
-	<c:set var="title" value="Tạo danh mục" />
+	<c:set var="title" value="Create Category" />
 </c:if>
 
 <c:if test="${not empty updateCate }">
 	<c:set var="crrBean" value="${updateCate}" />
 	<c:set var="nameBean" value="updateCate" />
 	<c:set var="actionString" value="admin/category/update_category.htm?id=${crrBean.id}" />
-	<c:set var="title" value="Cập nhật danh mục" />
+	<c:set var="title" value="Update Category" />
 </c:if>
 <body>
 
@@ -49,9 +47,9 @@
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item  "><a
-													href="admin/dashboard.htm" class="brc-link">Trang chủ</a></li>
+													href="admin/dashboard.htm" class="brc-link">Dashboard </a></li>
 												<li class="breadcrumb-item "><a
-													href="admin/category.htm" class="brc-link">Danh mục</a>
+													href="admin/category.htm" class="brc-link">Category </a>
 												<li class="breadcrumb-item active" aria-current="page">${title }</li>
 											</ol>
 
@@ -66,7 +64,8 @@
 									modelAttribute="${nameBean }" enctype="multipart/form-data">
 									<form:input type="hidden" path="id" />
 									<div class="form-group ">
-										<label for="name-category" class="mb-2 fw-bold">Tên phân loại</label>
+										<label for="name-category" class="mb-2 fw-bold">Name
+											Category</label>
 										<form:input type="text" class="form-control"
 											id="name-category" path="name" required="true"/>
 											<form:errors path="name" style="color: red;" />
@@ -74,18 +73,18 @@
 									</div>
 									<c:if test="${not empty updateCate }">
 										<div class="form-group mt-3">
-											<p class="mb-2 fw-bold">Ảnh hiện tại</p>
+											<p class="mb-2 fw-bold">Current Image</p>
 											<img id="output" class="width-100" style="width: 100px"
 												src="<c:url value="/assets/user/img/category/${crrBean.image}" />"
 												alt="No Image" />
 										</div>
 									</c:if>
 									<div class="form-group mt-3">
-										<label for="image" class="mb-2 fw-bold">Hình ảnh</label>
+										<label for="image" class="mb-2 fw-bold">Change Image</label>
 										<form:input id="image" type="file" class="form-control"
 											accept="image/*" path="fileImage" />
 									</div>
-									<button type="submit" class=" mt-3 btn btn-custom">Xác nhận</button>
+									<button type="submit" class=" mt-3 btn btn-custom">Submit</button>
 								</form:form>
 							</div>
 						</div>

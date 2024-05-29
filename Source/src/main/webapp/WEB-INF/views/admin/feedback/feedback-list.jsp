@@ -28,15 +28,15 @@
 								<div
 									class="d-md-flex justify-content-between align-items-center">
 									<div>
-										<h2>Đánh giá</h2>
+										<h2>Feedback</h2>
 										<!-- breacrumb -->
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item  "><a
-													href="admin/dashboard.htm" class="brc-link">Trang chủ
+													href="admin/dashboard.htm" class="brc-link">Dashboard
 												</a></li>
 												<li class="breadcrumb-item active" aria-current="page"
-													class="text-decoration-none">Đánh giá</li>
+													class="text-decoration-none">Feedback</li>
 											</ol>
 
 										</nav>
@@ -56,22 +56,22 @@
 											<form class="d-flex" role="search"
 												action="admin/feedback.htm">
 												<label for="search"></label> <input class="form-control"
-													type="search" placeholder="Tìm nội dung hoặc mã định danh"
+													type="search" placeholder="Search Review or ID"
 													aria-label="Search" name="search" required>
 											</form>
 										</div>
 										<div class="col-xl-2 col-md-4 col-12 d-flex flex-col">
-											<p class="mr-4 p-1">Số sao</p>
+											<p class="mr-4 p-1">Star</p>
 											<div class="dropdown">
 
 												<button class="btn btn-custom dropdown-toggle" type="button"
 													data-bs-toggle="dropdown" aria-expanded="false">
-													<c:if test="${star == null}">Tất cả</c:if>
-													<c:if test="${star == 1 }">1</c:if>
-													<c:if test="${star == 2 }">2</c:if>
-													<c:if test="${star == 3 }">3</c:if>
-													<c:if test="${star == 4 }">4</c:if>
-													<c:if test="${star == 5 }">5</c:if>
+													<c:if test="${star == null}">All</c:if>
+													<c:if test="${star == 1 }">One</c:if>
+													<c:if test="${star == 2 }">Two</c:if>
+													<c:if test="${star == 3 }">Three</c:if>
+													<c:if test="${star == 4 }">Four</c:if>
+													<c:if test="${star == 5 }">Five</c:if>
 												</button>
 												<ul class="dropdown-menu">
 													<c:set var="baseURL" value="admin/feedback.htm" />
@@ -87,12 +87,12 @@
 															<c:set var="separator" value="&" />
 														</c:otherwise>
 													</c:choose>
-													<li><a class="dropdown-item" href="${baseURL}">Tất cả</a></li>
-													<li><a class="dropdown-item" href="${baseURL}${separator}star=1">1</a></li>
-													<li><a class="dropdown-item" href="${baseURL}${separator}star=2">2</a></li>
-													<li><a class="dropdown-item" href="${baseURL}${separator}star=3">3</a></li>
-													<li><a class="dropdown-item" href="${baseURL}${separator}star=4">4</a></li>
-													<li><a class="dropdown-item" href="${baseURL}${separator}star=5">5</a></li>
+													<li><a class="dropdown-item" href="${baseURL}">All</a></li>
+													<li><a class="dropdown-item" href="${baseURL}${separator}star=1">One</a></li>
+													<li><a class="dropdown-item" href="${baseURL}${separator}star=2">Two</a></li>
+													<li><a class="dropdown-item" href="${baseURL}${separator}star=3">Three</a></li>
+													<li><a class="dropdown-item" href="${baseURL}${separator}star=4">Four</a></li>
+													<li><a class="dropdown-item" href="${baseURL}${separator}star=5">Five</a></li>
 												</ul>
 											</div>
 										</div>
@@ -107,14 +107,14 @@
 							<table class="table ">
 								<thead class="position-sticky top-0 ">
 									<tr class="table-success">
-										<th>ID</th>
-										<th>Sản phẩm</th>
-										<th>Tên sản phẩm</th>
-										<th>Khách hàng</th>
-										<th>Nội dung</th>
-										<th>Số sao</th>
-										<th>Ngày</th>
-										<th>Trạng thái</th>
+										<th>Id</th>
+										<th>Product</th>
+										<th>Product Name</th>
+										<th>Customer</th>
+										<th>Review</th>
+										<th>Rating</th>
+										<th>Date</th>
+										<th>Status</th>
 										<th>Enable</th>
 									</tr>
 								</thead>
@@ -124,7 +124,7 @@
 										<tr>
 											<td class="align-middle">${item.feedbackId }</td>
 											<td class="align-middle"><a
-												href="product-detail.htm?productId=${item.product.productId }"><img
+												href="product/detail.htm?productId=${item.product.productId }"><img
 													style="width: 100px"
 													src="assets/user/img/products/${item.product.image}" /></a></td>
 											<td class="align-middle"><h6>${item.product.productName}</h6></td>

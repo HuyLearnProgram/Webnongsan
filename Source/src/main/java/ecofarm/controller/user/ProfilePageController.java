@@ -200,21 +200,16 @@ public class ProfilePageController {
 	}
 
 	@RequestMapping(value = "order/myorder.htm", method = RequestMethod.GET)
-	public String orderDetail(@RequestParam("orderId") int orderId, ModelMap model,
-			@CookieValue(value = "userEmail", defaultValue = "", required = false) String userEmail) {
+	public String orderDetail(@RequestParam("orderId") int orderId, ModelMap model, @CookieValue(value = "userEmail", defaultValue = "", required = false) String userEmail) {
 		Orders order = orderDAO.findOrder(orderId);
 
-		if (userEmail.isEmpty()) {
-			return "redirect:/login.htm";
-		}
-		System.out.println(userEmail);
-		System.out.println(order.getAccount().getEmail());
-
-		if (!order.getAccount().getEmail().equals(userEmail)) {
-			model.addAttribute("violate", "Yêu cầu của bạn không khả dụng. Bạn chỉ được xem đơn hàng của mình");
-			return "user/account/order_detail";
-		}
-
+        if (userEmail.isEmpty()) {
+        	return "redirect:/login.htm";
+        }
+        if (order.getAccount().getEmail() != userEmail) {
+        	model.addAttribute("violate", "Yêu cầu của bạn không khả dụng. Bạn chỉ được xem đơn hàng của mình");
+        	return "user/account/order_detail";
+        }
 		List<OrderDetail> orderDetail = orderDAO.getOrderDetail(orderId);
 		model.addAttribute("order", order);
 		model.addAttribute("orderDetail", orderDetail);

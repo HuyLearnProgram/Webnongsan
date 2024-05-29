@@ -16,7 +16,7 @@ import ecofarm.utility.Paginate;
 @Controller
 @RequestMapping("admin/orders")
 public class AdminControllerOrder {
-	private final int ORDER_PER_PAGE = 10;
+	private final int ORDER_PER_PAGE = 5;
 	@Autowired
 	private IOrderDAO orderDAO;
 	private PaginateDAOImpl paginateDAO = new PaginateDAOImpl();

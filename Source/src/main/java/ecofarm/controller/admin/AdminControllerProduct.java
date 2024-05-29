@@ -106,7 +106,7 @@ public class AdminControllerProduct {
 
 		Account acc = (Account) session.getAttribute("userInfo");
 		if (acc == null) {
-			System.out.print("Không có tài khoản");
+			System.out.print("Khong co user");
 			return "redirect:/logout.htm";
 		}
 		
@@ -139,7 +139,7 @@ public class AdminControllerProduct {
 		if (category != null) {
 			newProduct.setCategory(category);
 		} else {
-			re.addFlashAttribute("mess", "Không tìm thấy danh mục");
+			re.addFlashAttribute("mess", "Không tìm thấy category");
 			return "redirect:/admin/products.htm";
 		}
 		if (!product.getImageFile().isEmpty()) {
@@ -180,11 +180,11 @@ public class AdminControllerProduct {
 					}
 				}
 			} catch (Exception e) {
-				re.addFlashAttribute("mess", "Kiểm tra lại hình ảnh của bạn");
+				re.addFlashAttribute("mess", "Check product image again");
 			}
-			re.addFlashAttribute("mess", "Xóa thành công");
+			re.addFlashAttribute("mess", "Delete successful");
 		} else {
-			re.addFlashAttribute("mess", "Có lỗi xảy ra trong quá trình xóa");
+			re.addFlashAttribute("mess", "An error occurred when delete");
 		}
 		return "redirect:/admin/products.htm";
 	}
@@ -260,7 +260,7 @@ public class AdminControllerProduct {
 			foundProd.setPrice(product.getPrice());
 			foundProd.setQuantity(product.getQuantity());
 			productDAO.updateProduct(foundProd);
-			re.addFlashAttribute("mess", "Cập nhật thành công");
+			re.addFlashAttribute("mess", "Update successful");
 		}
 		return "redirect:/admin/products.htm";
 	}

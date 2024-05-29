@@ -19,12 +19,12 @@
 								<div
 									class="d-md-flex justify-content-between align-items-center">
 									<div>
-										<h2>Trang chủ</h2>
+										<h2>Dashboard</h2>
 										<!-- Breadcrumb -->
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item"><a href="admin/index.htm"
-													class="brc-link">Trang chủ</a></li>
+													class="brc-link">Dashboard</a></li>
 											</ol>
 										</nav>
 									</div>
@@ -45,8 +45,8 @@
 								<div class="card bg-light border-0 rounded-4"
 									style="background-image: url(assets/admin/img/slide_2.jpg); background-repeat: no-repeat; background-size: cover; background-position: right;">
 									<div class="card-body p-lg-12 p-5">
-										<h1>Xin chào!</h1>
-										<p>Chào mừng bạn quay lại.</p>
+										<h1>Welcome back! Admin</h1>
+										<p>Welcome to the admin page.</p>
 									</div>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 										<div
 											class="d-flex justify-content-between align-items-center mb-4">
 											<div>
-												<h4 class="mb-0 fs-5">Tổng doanh thu</h4>
+												<h4 class="mb-0 fs-5">Earnings</h4>
 											</div>
 											<div
 												class="icon-shape icon-md bg-light-danger text-dark-danger rounded-circle">
@@ -73,10 +73,9 @@
 										<div class="lh-1">
 											<h1 class="mb-2 fw-bold fs-2">
 												<fmt:formatNumber value="${totalEarning}" type="currency"
-													currencySymbol="đ" maxFractionDigits="0" />
+													currencySymbol="VND" maxFractionDigits="0" />
 											</h1>
-											<span>Phí vận chuyển <fmt:formatNumber value="${totalFee}" type="currency"
-													currencySymbol="đ" maxFractionDigits="0" /></span>
+											<span>Monthly revenue</span>
 										</div>
 									</div>
 								</div>
@@ -91,7 +90,7 @@
 										<div
 											class="d-flex justify-content-between align-items-center mb-6">
 											<div>
-												<h4 class="mb-0 fs-5">Đơn hàng</h4>
+												<h4 class="mb-0 fs-5">Orders</h4>
 											</div>
 											<div
 												class="icon-shape icon-md bg-light-warning text-dark-warning rounded-circle">
@@ -100,9 +99,10 @@
 										</div>
 										<!-- project number -->
 										<div class="lh-1">
-											<h1 class="mb-2 mt-2 fw-bold fs-2">${totalOrder}</h1>
+											<h1 class="mb-2 fw-bold fs-2">${totalOrder}</h1>
+											<span>Monthly revenue</span>
 										</div>
-										<span>${ordersThisMonth } đơn hàng tháng này</span>
+
 									</div>
 								</div>
 							</div>
@@ -116,7 +116,7 @@
 										<div
 											class="d-flex justify-content-between align-items-center mb-6">
 											<div>
-												<h4 class="mb-0 fs-5">Khách hàng</h4>
+												<h4 class="mb-0 fs-5">Customer</h4>
 											</div>
 											<div
 												class="icon-shape icon-md bg-light-info text-dark-info rounded-circle">
@@ -125,9 +125,10 @@
 										</div>
 										<!-- project number -->
 										<div class="lh-1">
-											<h1 class="mb-2 mt-2 fw-bold fs-2">${totalClient}</h1>
+											<h1 class="mb-2 fw-bold fs-2">${totalClient}</h1>
+											<span>Monthly revenue</span>
 										</div>
-										<%-- <span>${clientBuyThisMonth } khách hàng mua hàng tháng này</span> --%>
+
 									</div>
 								</div>
 							</div>

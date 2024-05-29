@@ -104,9 +104,9 @@ public class AdminControllerCategory {
 			}
 			boolean done = categoryDAO.addCategory(category);
 			if (!done) {
-				re.addFlashAttribute("mess", "Thêm thất bại");
+				re.addFlashAttribute("mess", "Add failed");
 			}
-			re.addFlashAttribute("mess", "Thêm thành công");
+			re.addFlashAttribute("mess", "Add successful");
 		}
 		return "redirect:/admin/category.htm";
 	}
@@ -156,12 +156,12 @@ public class AdminControllerCategory {
 			} catch (Exception e) {
 				e.printStackTrace();
 				categoryBean.setImage(category.getImage());
-				model.addAttribute("mess", "Có lỗi xảy ra");
+				model.addAttribute("mess", "An error occurred");
 				model.addAttribute("updateCate", categoryBean);
 				return "admin/category/category-form";
 			}
 			categoryDAO.updateCategory(category);
-			re.addFlashAttribute("mess", "Cập nhật thành công");
+			re.addFlashAttribute("mess", "Update successful");
 		}
 		return "redirect:/admin/category.htm";
 	}
@@ -179,11 +179,11 @@ public class AdminControllerCategory {
 					}
 				}
 			} catch (Exception e) {
-				re.addFlashAttribute("mess", "Kiểm tra lại hình ảnh của bạn");
+				re.addFlashAttribute("mess", "Check category image again");
 			}
-			re.addFlashAttribute("mess", "Xóa thành công");
+			re.addFlashAttribute("mess", "Delete successful");
 		} else {
-			re.addFlashAttribute("mess", "Có lỗi xảy ra");
+			re.addFlashAttribute("mess", "An error occurred");
 		}
 
 		return "redirect:/admin/category.htm";

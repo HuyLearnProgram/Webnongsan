@@ -10,19 +10,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UserBean {
 	
-	@NotBlank(message = "Email không được để trống")
-	@Email(message = "Email không hợp lệ")
+	@NotBlank(message = "Email is required")
+	@Email(message = "Email is not valid")
 	private String email;
 
 	private String password;
 
-	@NotBlank(message = "Tên không được để trống")
+	@NotBlank(message = "First name is required")
 	private String firstName;
 	
-	@NotBlank(message = "Họ không được để trống")
+	@NotBlank(message = "Last name is required")
 	private String lastName;
 	
-	@Pattern(regexp = "^0\\d{9}$|^$", message = "Số điện thoại phải theo dạng: 0xxxxxxxxx")
+	@Pattern(regexp = "^0\\d{9}$|^$", message = "Invalid phone number format, number phone must be: 0xxxxxxxxx")
 	private String phoneNumber;
 
 	private MultipartFile avatar;

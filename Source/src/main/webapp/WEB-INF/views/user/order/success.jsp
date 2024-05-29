@@ -4,25 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <body>
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-section set-bg"
-		data-setbg="<c:url value="/assets/user/img/breadcrumb.jpg"/>">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="breadcrumb__text">
-						<h2>Checkout</h2>
-						<div class="breadcrumb__option">
-							<a href="./index.htm">Home</a> <span>Checkout</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
 	<div
-		class="d-flex justify-content-center align-items-center min-vh-60 mb-5 mt-5">
+		class="d-flex justify-content-center align-items-center min-vh-60 mb-5">
 		<div class="container-fluid text-center">
 			<div class="row justify-content-center">
 				<div class="col-md-8 col-lg-7 col-xl-6">

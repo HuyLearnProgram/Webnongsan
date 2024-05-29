@@ -3,12 +3,10 @@
 <%@include file="/WEB-INF/views/layouts/admin/admin-lib.jsp"%>
 <c:choose>
 	<c:when test="${source eq 'get-employee.htm'}">
-		<c:set var="role" value="employee" />
-		<c:set var="roleName" value="Nhân viên" />
+		<c:set var="role" value="Employee" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="role" value="guest" />
-		<c:set var="roleName" value="Khách hàng" />
+		<c:set var="role" value="Guest" />
 	</c:otherwise>
 </c:choose>
 
@@ -39,12 +37,12 @@
                             <div class="d-md-flex justify-content-between align-items-center">
                                 <!-- pageheader -->
                                 <div>
-                                    <h2>${roleName}</h2>
+                                    <h2>${role}</h2>
                                     <!-- breadcrumb -->
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
-                                            <li class="breadcrumb-item"><a href="index.htm" class="text-decoration-none brc-link">Trang chủ</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">${roleName}</li>
+                                            <li class="breadcrumb-item"><a href="index.htm" class="text-decoration-none brc-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">${role}</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -58,17 +56,17 @@
 
                     <div class="row mb-4 mt-3">
                         <div class="col-xl-12 col-12 mb-5">
-                            <div class="px-6 py-6">
+                            <div class="px-6 py-6 p-4">
                                 <div class="row justify-content-between">
                                     <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0">
                                         <form class="d-flex" role="search" action="admin/user/${source}">
-                                            <input class="form-control" type="search" placeholder="Tìm kiếm ${roleName} theo tên hoặc email" aria-label="Search" name="search" required>
+                                            <input class="form-control" type="search" placeholder="Search ${role} by name or email" aria-label="Search" name="search" required>
                                         </form>
                                     </div>
                                     <div class="col-xl-2 col-md-4 col-12">
                                         <!-- button -->
                                         <div>
-                                            <a href="admin/user/create-${role.toLowerCase()}.htm" class="btn btn-custom">${roleName} mới</a>
+                                            <a href="admin/user/create-${role.toLowerCase()}.htm" class="btn btn-custom">Add New ${role}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,12 +77,12 @@
                     <table class="table table-hover table-striped table-categories">
                         <thead class="position-sticky top-0 bg-white">
                             <tr class="table-success">
-                                <th>Ảnh đại diện</th>
-                                <th>Họ tên</th>
-                                <th>Trạng thái</th>
+                                <th>Avatar</th>
+                                <th>Fullname</th>
+                                <th>Status</th>
                                 <th>Email</th>
                                 <th>Enable</th>
-                                <th>Sửa</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>

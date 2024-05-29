@@ -220,13 +220,13 @@ public class AdminControllerUser {
 		} catch (Exception e) {
 			e.printStackTrace();
 			user.setAvatarDir(account.getAvatar());
-			model.addAttribute("mess", "Có lỗi khi xử lý ảnh");
+			model.addAttribute("mess", "An error occurred while processing image");
 			model.addAttribute("updateuser", user);
 			return "admin/user/edit-user";
 		}
 
 		if (accountDAO.updateAccount(account)) {
-			ra.addFlashAttribute("mess", "Cập nhật thành công");
+			ra.addFlashAttribute("mess", "Update successful");
 			if (account.getRole().getRoleName().equals("Guest"))
 
 				return "redirect:/admin/user/get-guest.htm";
@@ -235,7 +235,7 @@ public class AdminControllerUser {
 				return "redirect:/admin/user/get-employee.htm";
 
 		}
-		model.addAttribute("mess", "Cập nhật thất bại");
+		model.addAttribute("mess", "Update failed");
 		model.addAttribute("updateuser", user);
 		return "admin/user/edit-user";
 	}

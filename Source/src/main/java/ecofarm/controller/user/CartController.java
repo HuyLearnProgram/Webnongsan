@@ -44,7 +44,10 @@ public class CartController {
 	public String AddToCart(@RequestParam(value = "productId", required = true) int productId,
 			@CookieValue(value = "userEmail", defaultValue = "", required = false) String userEmail,
 			HttpSession session, HttpServletRequest request) {
-	
+		/*
+		 * if (userEmail.equals("")) { request.setAttribute("user", new Account());
+		 * return "redirect:/login.htm"; }
+		 */
 		Account account = accountDAO.getAccountByEmail(userEmail);
 		if (account != null) {
 			cartDAO.addToCart(productId, account.getAccountId());

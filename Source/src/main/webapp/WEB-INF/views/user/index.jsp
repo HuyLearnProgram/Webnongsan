@@ -128,12 +128,9 @@
 											<li><a
 												href="<c:url value="/product-detail.htm?productId=${item.productId }"/>"><i
 													class="fa fa-retweet"></i></a></li>
-											<c:if test="${item.quantity <= 0}">
-												<c:set var="btn_disable" value="disabled"></c:set>
-											</c:if>
 											<li><a
 												href="<c:url value="/AddCart.htm?productId=${item.productId }"/>"><i
-													class="fa fa-shopping-cart ${btn_disable }" ></i></a></li>
+													class="fa fa-shopping-cart"></i></a></li>
 										</ul>
 									</div>
 									<div class="featured__item__text">

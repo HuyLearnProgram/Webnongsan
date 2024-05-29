@@ -27,7 +27,7 @@ public class OrderDAOImpl implements IOrderDAO {
 	public List<Orders> getOrderFromAccount(int accountId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String hql = "FROM Orders WHERE account.accountID = :accountId ORDER BY orderId DESC";
+			String hql = "FROM Orders WHERE account.accountID = :accountId";
 			Query query = session.createQuery(hql);
 			query.setParameter("accountId", accountId);
 			@SuppressWarnings("unchecked")
@@ -111,7 +111,7 @@ public class OrderDAOImpl implements IOrderDAO {
 
 	@Override
 	public List<Orders> getUnresolveOrders() {
-		String hql = "From Orders where status = 0 ORDER BY orderId DESC";
+		String hql = "From Orders where status = 0";
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -121,7 +121,7 @@ public class OrderDAOImpl implements IOrderDAO {
 
 	@Override
 	public List<Orders> getMovingOrders() {
-		String hql = "From Orders where status = 1 ORDER BY orderId DESC";
+		String hql = "From Orders where status = 1";
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -131,7 +131,7 @@ public class OrderDAOImpl implements IOrderDAO {
 
 	@Override
 	public List<Orders> getResolveOrders() {
-		String hql = "From Orders where StatusOrder = 2 ORDER BY orderId DESC";
+		String hql = "From Orders where StatusOrder = 2";
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -141,7 +141,7 @@ public class OrderDAOImpl implements IOrderDAO {
 
 	@Override
 	public List<Orders> getCancelOrders() {
-		String hql = "From Orders where StatusOrder = 3 ORDER BY orderId DESC";
+		String hql = "From Orders where StatusOrder = 3";
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -208,7 +208,7 @@ public class OrderDAOImpl implements IOrderDAO {
 	public List<Orders> getOrders() {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			String hql = "From Orders ORDER BY orderId DESC";
+			String hql = "From Orders";
 			Query query = session.createQuery(hql);
 			@SuppressWarnings("unchecked")
 			List<Orders> list = query.list();
@@ -224,7 +224,7 @@ public class OrderDAOImpl implements IOrderDAO {
 		Session session = sessionFactory.openSession();
 		List<Orders> orders = null;
 		try {
-			String hql = "FROM Orders WHERE AccountID = :accountId ORDER BY orderId DESC";
+			String hql = "FROM Orders WHERE AccountID = :accountId";
 			Query query = session.createQuery(hql);
 			query.setParameter("accountId", accountId);
 			orders = query.list();

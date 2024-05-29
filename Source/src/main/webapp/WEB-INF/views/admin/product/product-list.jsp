@@ -31,19 +31,19 @@
 								<div
 									class="d-md-flex justify-content-between align-items-center">
 									<div>
-										<h2>Sản phẩm</h2>
+										<h2>Product</h2>
 										<!-- Breadcrumb -->
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb mb-0 text-muted fs-6 fw-semibold">
 												<li class="breadcrumb-item"><a
-													href="admin/dashboard.htm" class="brc-link">Trang chủ</a></li>
-												<li class="breadcrumb-item active text-decoration-none">Sản phẩm</li>
+													href="admin/dashboard.htm" class="brc-link">Dashboard</a></li>
+												<li class="breadcrumb-item active text-decoration-none">Product</li>
 											</ol>
 										</nav>
 									</div>
 									<div>
 										<a href="admin/products/create-product.htm"
-											class="btn btn-custom">Thêm sản phẩm</a>
+											class="btn btn-custom">Add New Product</a>
 									</div>
 								</div>
 							</div>
@@ -59,7 +59,7 @@
 											<form class="d-flex" role="search"
 												action="admin/products.htm">
 												<input class="form-control" type="search"
-													placeholder="Tìm sản phẩm	" aria-label="Search"
+													placeholder="Search Products" aria-label="Search"
 													name="search" required>
 											</form>
 										</div>
@@ -69,9 +69,9 @@
 												<button class="btn btn-custom dropdown-toggle" type="button"
 													data-bs-toggle="dropdown" aria-expanded="false">
 													<c:choose>
-														<c:when test="${sort == 'none' || sort == 'default'}">Mặc định</c:when>
-														<c:when test="${sort == 'name'}">Tên</c:when>
-														<c:when test="${sort == 'price'}">Giá</c:when>
+														<c:when test="${sort == 'none'}">Default</c:when>
+														<c:when test="${sort == 'name'}">Name</c:when>
+														<c:when test="${sort == 'price'}">Price</c:when>
 													</c:choose>
 												</button>
 												<ul class="dropdown-menu">
@@ -89,11 +89,11 @@
 														</c:otherwise>
 													</c:choose>
 													<li><a class="dropdown-item"
-														href="<c:url value='${baseURL}${separator}sort=default' />">Mặc định</a></li>
+														href="<c:url value='${baseURL}${separator}sort=default' />">Default</a></li>
 													<li><a class="dropdown-item"
-														href="<c:url value='${baseURL}${separator}sort=name' />">Tên</a></li>
+														href="<c:url value='${baseURL}${separator}sort=name' />">Name</a></li>
 													<li><a class="dropdown-item"
-														href="<c:url value='${baseURL}${separator}sort=price' />">Giá</a></li>
+														href="<c:url value='${baseURL}${separator}sort=price' />">Price</a></li>
 												</ul>
 											</div>
 
@@ -110,14 +110,14 @@
 							<table class="table">
 								<thead class="position-sticky top-0">
 									<tr class="table-success">
-										<th>Ảnh</th>
-										<th>Tên</th>
-										<th>Phân loại</th>
-										<th>Ngày đăng tải</th>
-										<th>Số lượng</th>
-										<th>Giá</th>
-										<th>Cập nhật</th>
-										<th>Xóa</th>
+										<th>Image</th>
+										<th>Name</th>
+										<th>Category</th>
+										<th>Posting Date</th>
+										<th>Quantity</th>
+										<th>Price</th>
+										<th>Update</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -151,13 +151,13 @@
 											</span></td>
 											<td class="align-middle"><a
 												href="admin/products/update_product/${item.productId}.htm"
-												class="btn btn-warning btn-sm"> Cập nhật</a></td>
+												class="btn btn-warning btn-sm"> Update</a></td>
 											<td class="align-middle">
 												<form action="admin/products/delete.htm" method="post">
 													<input type="hidden" name="id" value="${item.productId}">
 													<button type="submit"
 														class="btn btn-danger btn-sm ${item.orderDetails.size() > 0 ? 'disabled' : ''}">
-														Xóa</button>
+														Delete</button>
 												</form>
 											</td>
 										</tr>

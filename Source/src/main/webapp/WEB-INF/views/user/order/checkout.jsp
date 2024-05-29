@@ -14,7 +14,7 @@
 					<div class="breadcrumb__text">
 						<h2>Checkout</h2>
 						<div class="breadcrumb__option">
-							<a href="./index.htm">Home</a> <span>Checkout</span>
+							<a href="./index.html">Home</a> <span>Checkout</span>
 						</div>
 					</div>
 				</div>

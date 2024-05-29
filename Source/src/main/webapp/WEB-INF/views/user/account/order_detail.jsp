@@ -97,16 +97,15 @@
 														src="<c:url value='/assets/user/img/products/${o.product.image}'/>"
 														alt="Product Image" class="product-img"
 														style="width: 50px; height: 50px; margin-right: 10px;">
-													<span><a
-														class="address-link"
-														href="product-detail.htm?productId=${o.product.productId }">${o.product.productName }</a></span>
+													<span>${o.product.productName }</span>
 												</div>
 											</td>
 											<td>${o.quantity }</td>
-											<td><fmt:formatNumber value="${o.price }"
+											<td><fmt:formatNumber value="${o.product.price }"
 													type="currency" currencySymbol="đ" maxFractionDigits="0" /></td>
-											<td><fmt:formatNumber value="${o.price * o.quantity }"
-													type="currency" currencySymbol="đ" maxFractionDigits="0" /></td>
+											<td><fmt:formatNumber
+													value="${o.product.price * o.quantity }" type="currency"
+													currencySymbol="đ" maxFractionDigits="0" /></td>
 										</tr>
 									</c:forEach>
 								</tbody>
